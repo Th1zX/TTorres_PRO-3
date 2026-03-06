@@ -2,11 +2,11 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Vent extends JFrame{
-    
     JPanel log_regPanel;
     JPanel regPanel;
     JPanel usersPanel;
     JTabbedPane tabs;
+    
     public Vent() {
         this.setTitle("X");
         this.setLayout(null);
@@ -267,9 +267,6 @@ public class Vent extends JFrame{
         menu2.add(opt4_mi);
         JMenuItem opt5_mi = new JMenuItem("Guardar como");
         menu2.add(opt5_mi);
-
-
-
         this.setJMenuBar(menuBar);
     }
 }
