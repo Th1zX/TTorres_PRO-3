@@ -2,11 +2,11 @@ import java.awt.*;
 import javax.swing.*;
 
 public class Vent extends JFrame{
-
+    
     JPanel log_regPanel;
+    JPanel regPanel;
     JPanel usersPanel;
     JTabbedPane tabs;
-
     public Vent() {
         this.setTitle("X");
         this.setLayout(null);
@@ -16,19 +16,20 @@ public class Vent extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(800,500);
         this.setBackground(Color.white);
-        this.setLocationRelativeTo(null); 
+        this.setIconImage(new ImageIcon("/home/thiz/Documentos/GitHub/TTorres_PRO-3/src/rn.jpeg").getImage());
 
-
-        // tabs
         tabs = new JTabbedPane();
         tabs.setBounds(0, 0, 800, 500);
 
         log_regPanel = new JPanel();
         log_regPanel.setLayout(null);
+        regPanel = new JPanel();
+        regPanel.setLayout(null);
         usersPanel = new JPanel();
         usersPanel.setLayout(null);
 
-        tabs.addTab("Login-Register", log_regPanel);
+        tabs.addTab("Login", log_regPanel);
+        tabs.addTab("Register", regPanel);
         tabs.addTab("Users", usersPanel);
         this.add(tabs);
         this.login();
@@ -42,36 +43,38 @@ public class Vent extends JFrame{
         JLabel tag_title = new JLabel();
         JTextField ent_user = new JTextField();
         JPasswordField ent_pass = new JPasswordField();
-        JCheckBox rcd_userpass = new JCheckBox("Remember");
-        JButton btn_login = new JButton("Log In");
+        JCheckBox rcd_userpass = new JCheckBox("Recordar");
+        JButton btn_login = new JButton("Iniciar sesion");
 
         log_regPanel.add(tag_title);
-        tag_title.setText("Log In X");
-        tag_title.setBounds(100, 50, 200, 50);
-        tag_title.setOpaque(true);
-        tag_title.setFont(new Font("Arial",Font.BOLD,30));
+        ImageIcon logo = new ImageIcon("/home/thiz/Documentos/GitHub/TTorres_PRO-3/src/dascl.png");
+        Image logoScaled = logo.getImage().getScaledInstance(230, 80, Image.SCALE_SMOOTH);
+        tag_title.setIcon(new ImageIcon(logoScaled));
+        tag_title.setBounds(285, 30, 230, 80);
 
         log_regPanel.add(ent_user);
-        ent_user.setText("Username");
+        ent_user.setText("Usuario");
         ent_user.setBorder(BorderFactory.createLineBorder(Color.gray));
+        ent_user.setForeground(Color.WHITE);
         ent_user.setBackground(Color.gray);
-        ent_user.setBounds(50, 150, 235, 30);
+        ent_user.setBounds(285, 150, 235, 30);
         ent_user.setFont(new Font("Arial",Font.PLAIN,20));
 
         log_regPanel.add(ent_pass);
         ent_pass.setText("Password");
         ent_pass.setBorder(BorderFactory.createLineBorder(Color.gray));
+        ent_pass.setForeground(Color.WHITE);
         ent_pass.setBackground(Color.gray);
-        ent_pass.setBounds(50, 215, 235, 30);
+        ent_pass.setBounds(285, 215, 235, 30);
         ent_pass.setFont(new Font("Arial",Font.PLAIN,20));
         ent_pass.setEchoChar('·');
 
         log_regPanel.add(rcd_userpass);
-        rcd_userpass.setBounds(50, 250, 110, 25);
+        rcd_userpass.setBounds(285, 250, 110, 25);
         rcd_userpass.setFont(new Font("Arial",Font.PLAIN,15));
 
         log_regPanel.add(btn_login);
-        btn_login.setBounds(115, 280, 110, 25);
+        btn_login.setBounds(332, 280, 140, 25);
         btn_login.setBackground(Color.DARK_GRAY);
         btn_login.setForeground(Color.white);
         btn_login.setFont(new Font("Arial",Font.PLAIN,15));
@@ -82,62 +85,103 @@ public class Vent extends JFrame{
 
         rgs_title.setForeground(Color.white);
         rgs_title.setFont(new Font("Arial",Font.BOLD,20));
-        rgs_title.setBounds(25, 10, 200, 25);
+        rgs_title.setBounds(25, 10, 300, 25);
         rgs_cont.add(rgs_title);
         
-        log_regPanel.add(rgs_cont);
-        rgs_cont.setBounds(410,10,360,380);
+        JLabel regis_image = new JLabel();
+        ImageIcon regis = new ImageIcon("/home/thiz/Documentos/GitHub/TTorres_PRO-3/src/regis.png");
+        Image regisScaled = regis.getImage().getScaledInstance(400, 500, Image.SCALE_SMOOTH);
+        regis_image.setIcon(new ImageIcon(regisScaled));
+        regis_image.setBounds(0, 0, 400, 500);
+        regPanel.add(regis_image);
+
+        regPanel.add(rgs_cont);
+        rgs_cont.setBounds(400,0,400,500);
         rgs_cont.setOpaque(true);
-        rgs_cont.setBackground(Color.darkGray);
+        rgs_cont.setBackground(new Color(45, 70, 100));
         rgs_cont.setLayout(null);
-        
-        JTextArea bio_txt = new JTextArea("X _ X");
-        bio_txt.setBounds(25, 45, 310, 50);
-        bio_txt.setOpaque(true);
-        rgs_cont.add(bio_txt);
 
-        JCheckBox opt_sweet = new JCheckBox("Dulce");
-        opt_sweet.setBounds(25, 105, 100, 25);
-        opt_sweet.setBackground(Color.darkGray);
-        opt_sweet.setForeground(Color.WHITE);
-        opt_sweet.setOpaque(true);
-        rgs_cont.add(opt_sweet);
-        JCheckBox opt_salty = new JCheckBox("Salado");
-        opt_salty.setBounds(25, 140, 100, 25);
-        opt_salty.setBackground(Color.darkGray);
-        opt_salty.setForeground(Color.WHITE);
-        opt_salty.setOpaque(true);
-        rgs_cont.add(opt_salty);
-        JCheckBox opt_healty = new JCheckBox("Saludable");
-        opt_healty.setBounds(25, 175, 100, 25);
-        opt_healty.setBackground(Color.darkGray);
-        opt_healty.setForeground(Color.WHITE);
-        opt_healty.setOpaque(true);
-        rgs_cont.add(opt_healty);
+        JLabel label_nombre = new JLabel("Nombre:");
+        label_nombre.setForeground(Color.WHITE);
+        label_nombre.setBounds(25, 45, 80, 20);
+        label_nombre.setFont(new Font("Arial", Font.PLAIN, 12));
+        rgs_cont.add(label_nombre);
+        JTextField txt_nombre = new JTextField();
+        txt_nombre.setBounds(15, 65, 370, 25);
+        txt_nombre.setBorder(BorderFactory.createLineBorder(new Color(100, 150, 200)));
+        txt_nombre.setBackground(new Color(220, 230, 240));
+        txt_nombre.setForeground(new Color(30, 50, 80));
+        rgs_cont.add(txt_nombre);
 
-        JRadioButton accept_terms = new JRadioButton("Acepto los terminos y condiciones");
-        accept_terms.setBounds(25, 300, 250, 25);
-        accept_terms.setOpaque(true);
-        rgs_cont.add(accept_terms);
-        JRadioButton reject_terms = new JRadioButton("Rechazo los terminos y condiciones");
-        reject_terms.setBounds(25, 330, 250, 25);
-        reject_terms.setOpaque(true);
-        rgs_cont.add(reject_terms);
-        ButtonGroup terms_group = new ButtonGroup();
-        terms_group.add(accept_terms);
-        terms_group.add(reject_terms);
-        
-        String[] cols = {"Centro","Pueblo Nuevo","San Juan","Santa Ana"};
-        JComboBox<String> cols_combo = new JComboBox<>(cols);
-        cols_combo.setBounds(25, 200, 150, 25);
-        cols_combo.setOpaque(true);
-        rgs_cont.add(cols_combo);
+        JLabel label_apellidos = new JLabel("Apellidos:");
+        label_apellidos.setForeground(Color.WHITE);
+        label_apellidos.setBounds(25, 95, 80, 20);
+        label_apellidos.setFont(new Font("Arial", Font.PLAIN, 12));
+        rgs_cont.add(label_apellidos);
+        JTextField txt_apellidos = new JTextField();
+        txt_apellidos.setBounds(15, 115, 370, 25);
+        txt_apellidos.setBorder(BorderFactory.createLineBorder(new Color(100, 150, 200)));
+        txt_apellidos.setBackground(new Color(220, 230, 240));
+        txt_apellidos.setForeground(new Color(30, 50, 80));
+        rgs_cont.add(txt_apellidos);
+
+        JLabel label_control = new JLabel("No. Control:");
+        label_control.setForeground(Color.WHITE);
+        label_control.setBounds(25, 145, 80, 20);
+        label_control.setFont(new Font("Arial", Font.PLAIN, 12));
+        rgs_cont.add(label_control);
+        JTextField txt_control = new JTextField();
+        txt_control.setBounds(15, 165, 370, 25);
+        txt_control.setBorder(BorderFactory.createLineBorder(new Color(100, 150, 200)));
+        txt_control.setBackground(new Color(220, 230, 240));
+        txt_control.setForeground(new Color(30, 50, 80));
+        rgs_cont.add(txt_control);
+
+        JLabel label_correo = new JLabel("Correo:");
+        label_correo.setForeground(Color.WHITE);
+        label_correo.setBounds(25, 195, 80, 20);
+        label_correo.setFont(new Font("Arial", Font.PLAIN, 12));
+        rgs_cont.add(label_correo);
+        JTextField txt_correo = new JTextField();
+        txt_correo.setBounds(15, 215, 370, 25);
+        txt_correo.setBorder(BorderFactory.createLineBorder(new Color(100, 150, 200)));
+        txt_correo.setBackground(new Color(220, 230, 240));
+        txt_correo.setForeground(new Color(30, 50, 80));
+        rgs_cont.add(txt_correo);
+
+        JLabel label_carrera = new JLabel("Carrera:");
+        label_carrera.setForeground(Color.WHITE);
+        label_carrera.setBounds(25, 245, 80, 20);
+        label_carrera.setFont(new Font("Arial", Font.PLAIN, 12));
+        rgs_cont.add(label_carrera);
+        String[] carreras = {"Ingeniería de Software", "Administración", "Contabilidad", "Ingeniería Industrial", "Derecho"};
+        JComboBox<String> combo_carrera = new JComboBox<>(carreras);
+        combo_carrera.setBounds(15, 265, 370, 25);
+        rgs_cont.add(combo_carrera);
+
+        JLabel label_semestre = new JLabel("Semestre:");
+        label_semestre.setForeground(Color.WHITE);
+        label_semestre.setBounds(25, 295, 80, 20);
+        label_semestre.setFont(new Font("Arial", Font.PLAIN, 12));
+        rgs_cont.add(label_semestre);
+        String[] semestres = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+        JComboBox<String> combo_semestre = new JComboBox<>(semestres);
+        combo_semestre.setBounds(15, 315, 370, 25);
+        rgs_cont.add(combo_semestre);
+
+        JCheckBox chk_terminos = new JCheckBox("Acepto los términos y condiciones");
+        chk_terminos.setBounds(15, 345, 370, 20);
+        chk_terminos.setBackground(new Color(45, 70, 100));
+        chk_terminos.setForeground(Color.WHITE);
+        chk_terminos.setOpaque(true);
+        rgs_cont.add(chk_terminos);
 
         JButton btn_register = new JButton("Registrar");
-        btn_register.setBounds(25, 250, 110, 25);
-        btn_register.setBackground(Color.white);
-        btn_register.setBorder(BorderFactory.createLineBorder(Color.gray));
-        btn_register.setFont(new Font("Arial",Font.PLAIN,15));
+        btn_register.setBounds(152, 370, 95, 25);
+        btn_register.setBackground(new Color(100, 150, 200));
+        btn_register.setBorder(BorderFactory.createLineBorder(new Color(70, 120, 170)));
+        btn_register.setFont(new Font("Arial", Font.PLAIN, 15));
+        btn_register.setForeground(Color.WHITE);
         rgs_cont.add(btn_register);
     }
     
@@ -174,16 +218,58 @@ public class Vent extends JFrame{
         final_table.setBounds(50, 200, 700, 200);
         usersPanel.add(final_table);
 
+        JLabel user_title = new JLabel("Users");
+        user_title.setBounds(350,30,200,100);
+        user_title.setFont(new Font("Arial",Font.BOLD,35));
+        user_title.setForeground(Color.white);
+        usersPanel.add(user_title);
+
+        JLabel users_conttitle = new JLabel("Total Users");
+        users_conttitle.setBounds(75,100,200,100);
+        users_conttitle.setFont(new Font("Arial",Font.BOLD,20));
+        users_conttitle.setForeground(Color.white);
+        usersPanel.add(users_conttitle);
+
+        JLabel users_cont = new JLabel("18");
+        users_cont.setBounds(75,125,200,100);
+        users_cont.setFont(new Font("Arial",Font.BOLD,20));
+        users_cont.setForeground(Color.white);
+        usersPanel.add(users_cont);
+
+        
         JButton desc_btn = new JButton("Download");
-        desc_btn.setBounds(700,150,60,35);
+        desc_btn.setBounds(680,150,100,20);
         desc_btn.setFont(new Font("Arial",Font.BOLD,10));
         usersPanel.add(desc_btn);
 
         JButton add_btn = new JButton("Add");
-        add_btn.setBounds(625,150,60,35);
+        add_btn.setBounds(570,150,100,20);
         add_btn.setFont(new Font("Arial",Font.BOLD,10));
         usersPanel.add(add_btn);
 
+        JMenuBar menuBar = new JMenuBar();
+        JMenu barra = new JMenu("|||");
+        menuBar.add(barra);
 
+        JMenu menu1 = new JMenu("Archivo");
+        barra.add(menu1);
+        JMenuItem opt1_mi = new JMenuItem("Abir");
+        menu1.add(opt1_mi);
+        JMenuItem opt2_mi = new JMenuItem("Nuevo");
+        menu1.add(opt2_mi);
+        JMenuItem opt3_mi = new JMenuItem("Cerrar");
+        menu1.add(opt3_mi);
+        menu1.addSeparator();
+
+        JMenu menu2 = new JMenu("Guardar");
+        menu1.add(menu2);
+        JMenuItem opt4_mi = new JMenuItem("Guardar");
+        menu2.add(opt4_mi);
+        JMenuItem opt5_mi = new JMenuItem("Guardar como");
+        menu2.add(opt5_mi);
+
+
+
+        this.setJMenuBar(menuBar);
     }
 }
