@@ -6,7 +6,6 @@ public class Vent extends JFrame{
     JPanel regPanel;
     JPanel usersPanel;
     JTabbedPane tabs;
-    
     public Vent() {
         this.setTitle("X");
         this.setLayout(null);
@@ -16,7 +15,6 @@ public class Vent extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(800,500);
         this.setBackground(Color.white);
-        this.setIconImage(new ImageIcon("/home/thiz/Documentos/GitHub/TTorres_PRO-3/src/rn.jpeg").getImage());
 
         tabs = new JTabbedPane();
         tabs.setBounds(0, 0, 800, 500);
@@ -32,6 +30,7 @@ public class Vent extends JFrame{
         tabs.addTab("Register", regPanel);
         tabs.addTab("Users", usersPanel);
         this.add(tabs);
+        
         this.login();
         this.registro();
         this.users();
@@ -47,7 +46,7 @@ public class Vent extends JFrame{
         JButton btn_login = new JButton("Iniciar sesion");
 
         log_regPanel.add(tag_title);
-        ImageIcon logo = new ImageIcon("/home/thiz/Documentos/GitHub/TTorres_PRO-3/src/dascl.png");
+        ImageIcon logo = new ImageIcon(getClass().getResource("/dascl.png"));
         Image logoScaled = logo.getImage().getScaledInstance(230, 80, Image.SCALE_SMOOTH);
         tag_title.setIcon(new ImageIcon(logoScaled));
         tag_title.setBounds(285, 30, 230, 80);
@@ -89,7 +88,7 @@ public class Vent extends JFrame{
         rgs_cont.add(rgs_title);
         
         JLabel regis_image = new JLabel();
-        ImageIcon regis = new ImageIcon("/home/thiz/Documentos/GitHub/TTorres_PRO-3/src/regis.png");
+        ImageIcon regis = new ImageIcon(getClass().getResource("/regis.png"));
         Image regisScaled = regis.getImage().getScaledInstance(400, 500, Image.SCALE_SMOOTH);
         regis_image.setIcon(new ImageIcon(regisScaled));
         regis_image.setBounds(0, 0, 400, 500);
@@ -268,5 +267,9 @@ public class Vent extends JFrame{
         JMenuItem opt5_mi = new JMenuItem("Guardar como");
         menu2.add(opt5_mi);
         this.setJMenuBar(menuBar);
+    }
+
+    private void setIconImage(String rnjpeg) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
