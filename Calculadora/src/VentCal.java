@@ -48,9 +48,7 @@ public class VentCal extends JFrame {
         panelB.setBackground(C_PANEL);
 
         //Logica soon.......
-        ActionListener listener = e -> {
-            String comando = e.getActionCommand();
-        };
+        ActionListener listener = e -> {};
 
         gman.fill = GridBagConstraints.BOTH;
         gman.weightx = 1.0;
