@@ -7,12 +7,6 @@ public class VentCal extends JFrame {
 
     Font FONT_DISPLAY = new Font("Arial", Font.BOLD, 42);
     Font FONT_BUTTON = new Font("Arial", Font.BOLD, 22);
-    Color C_FONDO = new Color(25, 25, 30);
-    Color C_PANEL = new Color(25, 25, 30);
-    Color C_BTN = new Color(45, 45, 50);
-    Color C_OP = new Color(130, 80, 255);
-    Color C_CLR = new Color(80, 80, 90);
-
     JTextField ent0;
 
     String[][] BTN_LAYOUT = {
@@ -31,7 +25,7 @@ public class VentCal extends JFrame {
 
         JPanel panel1 = new JPanel(new BorderLayout(10, 10));
         panel1.setBorder(new EmptyBorder(10, 10, 10, 10)); 
-        panel1.setBackground(C_FONDO); 
+        panel1.setBackground(Color.BLACK); 
 
         JPanel panelS = new JPanel(new BorderLayout());
         ent0 = new JTextField("0");
@@ -40,12 +34,12 @@ public class VentCal extends JFrame {
         ent0.setFont(FONT_DISPLAY);
         ent0.setForeground(Color.WHITE);
         ent0.setBorder(null); 
-        ent0.setBackground(C_PANEL);
+        ent0.setBackground(Color.BLACK);
         panelS.add(ent0, BorderLayout.CENTER);
 
         JPanel panelB = new JPanel(new GridBagLayout());
         GridBagConstraints gman = new GridBagConstraints();
-        panelB.setBackground(C_PANEL);
+        panelB.setBackground(Color.BLACK);
 
         //Logica soon.......
         ActionListener listener = e -> {};
@@ -88,12 +82,17 @@ public class VentCal extends JFrame {
         btn.addActionListener(listener);
         btn.setForeground(Color.WHITE);
 
-        if ("←".equals(label)) btn.setBackground(C_CLR);
-        else if ("/*-+".contains(label)) btn.setBackground(C_OP);
-        else if ("%".equals(label)) btn.setBackground(C_OP);
-        else if ("=".equals(label)) btn.setBackground(new Color(255, 159, 10));
-        else if ("Enter".equals(label)) btn.setBackground(C_CLR);
-        else { btn.setBackground(C_BTN); }
+        if ("/*-+%".contains(label)) {
+            btn.setBackground(Color.decode("#5c0086"));
+            btn.setBorder(BorderFactory.createLineBorder(Color.decode("#5c0086")));
+        }
+            
+        else if ("=".equals(label)) {
+            btn.setBackground(Color.decode("#ff9100"));
+            btn.setBorder(BorderFactory.createLineBorder(Color.decode("#ff9100")));
+        }
+        else { btn.setBackground(Color.decode("#353535"));   
+        }
 
         return btn;
     }
