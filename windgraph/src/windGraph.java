@@ -41,7 +41,7 @@ public class windGraph {
                 g2d.setColor(Color.decode("#ffe600"));
                 g2d.fillRoundRect(500,500,100,100,10,10);
                 g2d.fillArc(450,150,100,100,0,300);
-
+//ya
                 BufferedImage image;
                 try {
                     image = ImageIO.read(new File("src/rn.jpeg"));
