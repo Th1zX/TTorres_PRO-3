@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class Vent extends JFrame{
@@ -44,6 +46,21 @@ public class Vent extends JFrame{
         JPasswordField ent_pass = new JPasswordField();
         JCheckBox rcd_userpass = new JCheckBox("Recordar");
         JButton btn_login = new JButton("Iniciar sesion");
+        JLabel tit_user = new JLabel();
+        JLabel tit_pass = new JLabel();
+
+        log_regPanel.add(tit_user);
+        tit_user.setText("User");
+        tit_user.setForeground(Color.black);
+        tit_user.setBounds(285, 125, 235, 30);
+        tit_user.setFont(new Font("Arial",Font.PLAIN,15));
+
+        log_regPanel.add(tit_pass);
+        tit_pass.setText("Password");
+        tit_pass.setForeground(Color.black);
+        tit_pass.setBounds(285, 190, 235, 30);
+        tit_pass.setFont(new Font("Arial",Font.PLAIN,15));
+
 
         log_regPanel.add(tag_title);
         ImageIcon logo = new ImageIcon(getClass().getResource("/dascl.png"));
@@ -52,7 +69,8 @@ public class Vent extends JFrame{
         tag_title.setBounds(285, 30, 230, 80);
 
         log_regPanel.add(ent_user);
-        ent_user.setText("Usuario");
+        
+        ent_user.setText("");
         ent_user.setBorder(BorderFactory.createLineBorder(Color.gray));
         ent_user.setForeground(Color.WHITE);
         ent_user.setBackground(Color.gray);
@@ -60,7 +78,7 @@ public class Vent extends JFrame{
         ent_user.setFont(new Font("Arial",Font.PLAIN,20));
 
         log_regPanel.add(ent_pass);
-        ent_pass.setText("Password");
+        ent_pass.setText("");
         ent_pass.setBorder(BorderFactory.createLineBorder(Color.gray));
         ent_pass.setForeground(Color.WHITE);
         ent_pass.setBackground(Color.gray);
@@ -77,6 +95,20 @@ public class Vent extends JFrame{
         btn_login.setBackground(Color.DARK_GRAY);
         btn_login.setForeground(Color.white);
         btn_login.setFont(new Font("Arial",Font.PLAIN,15));
+
+        btn_login.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String user = ent_user.getText();
+                if(user.equals("")){
+                    System.err.println("vacio");
+                    ent_user.setBorder(BorderFactory.createLineBorder(Color.red,3));
+                }
+                else{
+                    ent_user.setBorder(BorderFactory.createLineBorder(Color.green));
+                }
+            }});
     }
     public void registro(){
         JPanel rgs_cont = new JPanel();
