@@ -22,7 +22,7 @@ public class WindowBuilder {
     lbl_datos_cliente.setVerticalAlignment(SwingConstants.TOP);
     lbl_datos_cliente.setBounds(30, 60, 650, 100);
     lbl_datos_cliente.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 12));
-    lbl_datos_cliente.setBorder(BorderFactory.createLineBorder(Color.decode("#c300ff")));
+    lbl_datos_cliente.setBorder(BorderFactory.createLineBorder(Color.decode("#D9D9D9")));
     lbl_datos_cliente.setForeground(Color.decode("#D9D9D9"));
     panel.add(lbl_datos_cliente);
 
@@ -52,7 +52,7 @@ public class WindowBuilder {
 
     JLabel lbl_datos_factura = new JLabel("Datos de Factura");
     lbl_datos_factura.setBounds(30, 170, 650, 70);
-    lbl_datos_factura.setBorder(BorderFactory.createLineBorder(Color.decode("#c300ff")));
+    lbl_datos_factura.setBorder(BorderFactory.createLineBorder(Color.decode("#D9D9D9")));
     lbl_datos_factura.setVerticalAlignment(SwingConstants.TOP);
     lbl_datos_factura.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 12));
     lbl_datos_factura.setForeground(Color.decode("#D9D9D9"));
@@ -83,7 +83,7 @@ public class WindowBuilder {
     panel.add(lbl_val_fecha);
 
     JLabel lbl_listado_facturas = new JLabel("Ver listado de facturas");
-    lbl_listado_facturas.setBorder(BorderFactory.createLineBorder(Color.decode("#c300ff")));
+    lbl_listado_facturas.setBorder(BorderFactory.createLineBorder(Color.decode("#D9D9D9")));
     lbl_listado_facturas.setVerticalAlignment(SwingConstants.TOP);
     lbl_listado_facturas.setBounds(30, 250, 650, 180);
     lbl_listado_facturas.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 12));
