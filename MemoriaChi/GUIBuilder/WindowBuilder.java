@@ -7,14 +7,32 @@ public class WindowBuilder {
 
     JFrame frame = new JFrame("X");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(975, 750);
+    frame.setSize(975, 800);
     frame.setResizable(false);
     JPanel panel = new JPanel();
     panel.setLayout(null);
     panel.setBackground(Color.decode("#1e1e1e"));
 
+    JLabel lblMovimientos = new JLabel("Movimientos: 0");
+    lblMovimientos.setBounds(80, 10, 180, 25);
+    lblMovimientos.setForeground(Color.decode("#D9D9D9"));
+    lblMovimientos.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 16));
+    panel.add(lblMovimientos);
+
+    JLabel lblPares = new JLabel("Pares encontrados: 0");
+    lblPares.setBounds(300, 10, 220, 25);
+    lblPares.setForeground(Color.decode("#D9D9D9"));
+    lblPares.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 16));
+    panel.add(lblPares);
+
+    JLabel lblSegundos = new JLabel("Segundos: 0");
+    lblSegundos.setBounds(580, 10, 180, 25);
+    lblSegundos.setForeground(Color.decode("#D9D9D9"));
+    lblSegundos.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 16));
+    panel.add(lblSegundos);
+
     JButton btn_r = new JButton("Reiniciar");
-    btn_r.setBounds(342, 660, 100, 29);
+    btn_r.setBounds(342, 700, 100, 29);
     btn_r.setBackground(Color.decode("#2e2e2e"));
     btn_r.setForeground(Color.decode("#D9D9D9"));
     btn_r.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
@@ -24,7 +42,7 @@ public class WindowBuilder {
     panel.add(btn_r);
 
     JButton btn_p = new JButton("Pausa");
-    btn_p.setBounds(573, 660, 100, 29);
+    btn_p.setBounds(573, 700, 100, 29);
     btn_p.setBackground(Color.decode("#2e2e2e"));
     btn_p.setForeground(Color.decode("#D9D9D9"));
     btn_p.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
@@ -34,7 +52,7 @@ public class WindowBuilder {
     panel.add(btn_p);
 
     JButton btn_m1 = new JButton("");
-    btn_m1.setBounds(80, 20, 160, 192);
+    btn_m1.setBounds(80, 50, 160, 192);
     btn_m1.setBackground(Color.decode("#2e2e2e"));
     btn_m1.setForeground(Color.decode("#D9D9D9"));
     btn_m1.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
@@ -44,7 +62,7 @@ public class WindowBuilder {
     panel.add(btn_m1);
 
     JButton btn_m2 = new JButton("");
-    btn_m2.setBounds(296, 20, 160, 192);
+    btn_m2.setBounds(296, 50, 160, 192);
     btn_m2.setBackground(Color.decode("#2e2e2e"));
     btn_m2.setForeground(Color.decode("#D9D9D9"));
     btn_m2.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
@@ -54,7 +72,7 @@ public class WindowBuilder {
     panel.add(btn_m2);
 
     JButton btn_m3 = new JButton("");
-    btn_m3.setBounds(512, 20, 160, 192);
+    btn_m3.setBounds(512, 50, 160, 192);
     btn_m3.setBackground(Color.decode("#2e2e2e"));
     btn_m3.setForeground(Color.decode("#D9D9D9"));
     btn_m3.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
@@ -64,7 +82,7 @@ public class WindowBuilder {
     panel.add(btn_m3);
 
     JButton btn_m4 = new JButton("");
-    btn_m4.setBounds(728, 20, 160, 192);
+    btn_m4.setBounds(728, 50, 160, 192);
     btn_m4.setBackground(Color.decode("#2e2e2e"));
     btn_m4.setForeground(Color.decode("#D9D9D9"));
     btn_m4.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
@@ -74,7 +92,7 @@ public class WindowBuilder {
     panel.add(btn_m4);
 
     JButton btn_m5 = new JButton("");
-    btn_m5.setBounds(80, 237, 160, 192);
+    btn_m5.setBounds(80, 267, 160, 192);
     btn_m5.setBackground(Color.decode("#2e2e2e"));
     btn_m5.setForeground(Color.decode("#D9D9D9"));
     btn_m5.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
@@ -84,7 +102,7 @@ public class WindowBuilder {
     panel.add(btn_m5);
 
     JButton btn_m6 = new JButton("");
-    btn_m6.setBounds(296, 237, 160, 192);
+    btn_m6.setBounds(296, 267, 160, 192);
     btn_m6.setBackground(Color.decode("#2e2e2e"));
     btn_m6.setForeground(Color.decode("#D9D9D9"));
     btn_m6.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
@@ -94,7 +112,7 @@ public class WindowBuilder {
     panel.add(btn_m6);
 
     JButton element9 = new JButton("");
-    element9.setBounds(512, 237, 160, 192);
+    element9.setBounds(512, 267, 160, 192);
     element9.setBackground(Color.decode("#2e2e2e"));
     element9.setForeground(Color.decode("#D9D9D9"));
     element9.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
@@ -104,7 +122,7 @@ public class WindowBuilder {
     panel.add(element9);
 
     JButton element10 = new JButton("");
-    element10.setBounds(728, 237, 160, 192);
+    element10.setBounds(728, 267, 160, 192);
     element10.setBackground(Color.decode("#2e2e2e"));
     element10.setForeground(Color.decode("#D9D9D9"));
     element10.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
@@ -114,7 +132,7 @@ public class WindowBuilder {
     panel.add(element10);
 
     JButton element11 = new JButton("");
-    element11.setBounds(80, 454, 160, 192);
+    element11.setBounds(80, 484, 160, 192);
     element11.setBackground(Color.decode("#2e2e2e"));
     element11.setForeground(Color.decode("#D9D9D9"));
     element11.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
@@ -124,7 +142,7 @@ public class WindowBuilder {
     panel.add(element11);
 
     JButton element12 = new JButton("");
-    element12.setBounds(296, 454, 160, 192);
+    element12.setBounds(296, 484, 160, 192);
     element12.setBackground(Color.decode("#2e2e2e"));
     element12.setForeground(Color.decode("#D9D9D9"));
     element12.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
@@ -134,7 +152,7 @@ public class WindowBuilder {
     panel.add(element12);
 
     JButton element13 = new JButton("");
-    element13.setBounds(512, 454, 160, 192);
+    element13.setBounds(512, 484, 160, 192);
     element13.setBackground(Color.decode("#2e2e2e"));
     element13.setForeground(Color.decode("#D9D9D9"));
     element13.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
@@ -144,7 +162,7 @@ public class WindowBuilder {
     panel.add(element13);
 
     JButton element14 = new JButton("");
-    element14.setBounds(728, 454, 160, 192);
+    element14.setBounds(728, 484, 160, 192);
     element14.setBackground(Color.decode("#2e2e2e"));
     element14.setForeground(Color.decode("#D9D9D9"));
     element14.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
