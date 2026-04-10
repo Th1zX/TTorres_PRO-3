@@ -23,7 +23,7 @@ public class windGraph {
                 g2d.fillRect(0, 580, 1000, 120);
                 g2d.setColor(Color.decode("#F4A460"));
                 g2d.fillRect(0, 550, 1000, 30);
-                
+
                 g2d.setColor(Color.BLACK);
                 g2d.setStroke(new BasicStroke(3));
                 g2d.drawLine(0, 550, 1000, 550);
@@ -70,7 +70,7 @@ public class windGraph {
                 g2d.fillRect(200, 100, 50, 50);
                 g2d.fillRect(50, 300, 50, 50);
                 g2d.fillRect(820, 300, 50, 50);
-                
+
                 g2d.setColor(Color.BLACK);
                 g2d.drawRect(150, 100, 50, 50);
                 g2d.drawRect(200, 100, 50, 50);
