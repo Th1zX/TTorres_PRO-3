@@ -11,31 +11,27 @@ public class LoginPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(new Color(245, 245, 250));
 
-        // Panel superior con encabezado centrado
-        JPanel headerPanel = new JPanel();
-        headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
-        headerPanel.setBackground(new Color(245, 245, 250));
-        
-        JLabel imageLabel = new JLabel();
-        ImageIcon icon = new ImageIcon("src/dascl.png");
-        Image img = icon.getImage().getScaledInstance(400, 150, Image.SCALE_SMOOTH);
-        imageLabel.setIcon(new ImageIcon(img));
-        imageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        headerPanel.add(Box.createVerticalStrut(20));
-        headerPanel.add(imageLabel);
-        headerPanel.add(Box.createVerticalStrut(20));
-        
-        add(headerPanel, BorderLayout.NORTH);
+        JPanel mainCenterPanel = new JPanel();
+        mainCenterPanel.setLayout(new BorderLayout());
+        mainCenterPanel.setBackground(new Color(245, 245, 250));
 
-        // Panel central con formulario centrado
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
         centerPanel.setBackground(new Color(245, 245, 250));
-        centerPanel.setBorder(BorderFactory.createEmptyBorder(20, 100, 20, 100));
+        centerPanel.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 50));
+        centerPanel.setMaximumSize(new Dimension(400, Integer.MAX_VALUE));
+
+        JLabel logImageLabel = new JLabel();
+        ImageIcon logIcon = new ImageIcon("src/dascl.png");
+        Image logImg = logIcon.getImage().getScaledInstance(300, 100, Image.SCALE_SMOOTH);
+        logImageLabel.setIcon(new ImageIcon(logImg));
+        logImageLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        centerPanel.add(logImageLabel);
+        centerPanel.add(Box.createVerticalStrut(20));
 
         JLabel title = new JLabel("Inicio de sesion");
         title.setFont(new Font("Arial", Font.BOLD, 28));
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        title.setAlignmentX(Component.LEFT_ALIGNMENT);
         centerPanel.add(title);
         centerPanel.add(Box.createVerticalStrut(30));
 
@@ -44,10 +40,12 @@ public class LoginPanel extends JPanel {
         centerPanel.add(emailLabel);
         centerPanel.add(Box.createVerticalStrut(5));
 
-        emailField = new JTextField(25);
+        emailField = new JTextField();
         emailField.setFont(new Font("Arial", Font.PLAIN, 16));
         emailField.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        emailField.setPreferredSize(new Dimension(400, 35));
         emailField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 35));
+        emailField.setAlignmentX(Component.LEFT_ALIGNMENT);
         centerPanel.add(emailField);
         centerPanel.add(Box.createVerticalStrut(15));
 
@@ -56,44 +54,66 @@ public class LoginPanel extends JPanel {
         centerPanel.add(passwordLabel);
         centerPanel.add(Box.createVerticalStrut(5));
 
-        passwordField = new JPasswordField(25);
+        passwordField = new JPasswordField();
         passwordField.setFont(new Font("Arial", Font.PLAIN, 16));
         passwordField.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
+        passwordField.setPreferredSize(new Dimension(400, 35));
         passwordField.setMaximumSize(new Dimension(Integer.MAX_VALUE, 35));
+        passwordField.setAlignmentX(Component.LEFT_ALIGNMENT); 
         centerPanel.add(passwordField);
         centerPanel.add(Box.createVerticalStrut(15));
 
         JCheckBox rememberCheck = new JCheckBox("Recordar contraseña");
         rememberCheck.setAlignmentX(Component.LEFT_ALIGNMENT);
+        rememberCheck.setBackground(new Color(245, 245, 250));
         centerPanel.add(rememberCheck);
         centerPanel.add(Box.createVerticalStrut(20));
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
         buttonPanel.setBackground(new Color(245, 245, 250));
+        buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        buttonPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40)); 
         
-        JButton accessButton = new JButton("Acceder");
+        JButton accessButton = new JButton("Ingresar");
         accessButton.setPreferredSize(new Dimension(140, 38));
         accessButton.setBackground(Color.BLACK);
         accessButton.setForeground(Color.WHITE);
         
-        JButton registerButton = new JButton("Ir a Registro");
+        JButton registerButton = new JButton("Registrarse");
         registerButton.setPreferredSize(new Dimension(140, 38));
         
+        buttonPanel.add(Box.createHorizontalGlue());
         buttonPanel.add(accessButton);
         buttonPanel.add(Box.createHorizontalStrut(20));
         buttonPanel.add(registerButton);
+        buttonPanel.add(Box.createHorizontalGlue());
         
         centerPanel.add(buttonPanel);
         centerPanel.add(Box.createVerticalStrut(15));
 
         JLabel hint = new JLabel("usuario: admin@uabcs.mx  contraseña: 12345");
         hint.setFont(new Font("Arial", Font.PLAIN, 12));
-        hint.setAlignmentX(Component.CENTER_ALIGNMENT);
+        hint.setAlignmentX(Component.LEFT_ALIGNMENT);
         centerPanel.add(hint);
         centerPanel.add(Box.createVerticalGlue());
 
-        add(centerPanel, BorderLayout.CENTER);
+        mainCenterPanel.add(centerPanel, BorderLayout.CENTER);
+
+        JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+        rightPanel.setBackground(new Color(245, 245, 250));
+        rightPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 20));
+
+        JLabel infoImageLabel = new JLabel();
+        ImageIcon infoIcon = new ImageIcon("src/infodasclog.jpg");
+        Image infoImg = infoIcon.getImage().getScaledInstance(350, 640, Image.SCALE_SMOOTH);
+        infoImageLabel.setIcon(new ImageIcon(infoImg));
+        infoImageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        rightPanel.add(infoImageLabel);
+
+        mainCenterPanel.add(rightPanel, BorderLayout.EAST);
+        add(mainCenterPanel, BorderLayout.CENTER);
 
         accessButton.addActionListener(e -> validateLogin());
         registerButton.addActionListener(e -> main.showRegistro());

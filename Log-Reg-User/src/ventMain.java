@@ -6,7 +6,7 @@ public class ventMain extends JFrame {
     private final JPanel content;
 
     public ventMain() {
-        setTitle("Login & Registro");
+        setTitle("Login-Registro");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(900, 720);
         setMinimumSize(new Dimension(850, 700));
@@ -18,6 +18,7 @@ public class ventMain extends JFrame {
         add(content, BorderLayout.CENTER);
         setJMenuBar(createMenuBar());
         setVisible(true);
+        showLogin();
     }
 
     private JMenuBar createMenuBar() {

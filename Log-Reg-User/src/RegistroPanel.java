@@ -11,64 +11,116 @@ public class RegistroPanel extends JPanel {
 
     public RegistroPanel(ventMain main) {
         this.main = main;
-        setLayout(null);
-        setBackground(new Color(235, 245, 255));
+        setLayout(new BorderLayout());
+        setBackground(new Color(245, 245, 250));
+
+        JPanel mainCenterPanel = new JPanel();
+        mainCenterPanel.setLayout(new BorderLayout());
+        mainCenterPanel.setBackground(new Color(245, 245, 250));
+
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+        centerPanel.setBackground(new Color(245, 245, 250));
+        centerPanel.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 50));
 
         JLabel title = new JLabel("Registro de usuario");
         title.setFont(new Font("Arial", Font.BOLD, 28));
-        title.setBounds(60, 30, 400, 40);
-        add(title);
+        title.setAlignmentX(Component.LEFT_ALIGNMENT);
+        centerPanel.add(title);
+        centerPanel.add(Box.createVerticalStrut(30));
 
-        nombreField = createField("Nombre", 80);
-        apellidosField = createField("Apellidos", 180);
-        controlField = createField("No. Control", 280);
-        correoField = createField("Correo electronico", 380);
+        nombreField = createFieldNew("Nombre", centerPanel);
+        apellidosField = createFieldNew("Apellidos", centerPanel);
+        controlField = createFieldNew("No. Control", centerPanel);
+        correoField = createFieldNew("Correo electronico", centerPanel);
 
         JLabel carreraLabel = new JLabel("Carrera");
-        carreraLabel.setBounds(60, 470, 200, 20);
-        add(carreraLabel);
+        carreraLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        centerPanel.add(carreraLabel);
+        centerPanel.add(Box.createVerticalStrut(5));
 
-        String[] carreras = {"Ingeniería de Software", "Administracion", "Contabilidad", "Ingeniería Industrial", "Derecho"};
+        String[] carreras = {"Ingenieria de Software", "Administracion", "Contabilidad", "Ingeniería Industrial", "Derecho"};
         JComboBox<String> carreraCombo = new JComboBox<>(carreras);
-        carreraCombo.setBounds(60, 500, 380, 30);
-        add(carreraCombo);
+        carreraCombo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 35));
+        carreraCombo.setAlignmentX(Component.LEFT_ALIGNMENT);
+        centerPanel.add(carreraCombo);
+        centerPanel.add(Box.createVerticalStrut(15));
 
         JLabel semestreLabel = new JLabel("Semestre");
-        semestreLabel.setBounds(60, 540, 200, 20);
-        add(semestreLabel);
+        semestreLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        centerPanel.add(semestreLabel);
+        centerPanel.add(Box.createVerticalStrut(5));
 
         String[] semestres = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
         JComboBox<String> semestreCombo = new JComboBox<>(semestres);
-        semestreCombo.setBounds(60, 570, 380, 30);
-        add(semestreCombo);
+        semestreCombo.setMaximumSize(new Dimension(Integer.MAX_VALUE, 35));
+        semestreCombo.setAlignmentX(Component.LEFT_ALIGNMENT);
+        centerPanel.add(semestreCombo);
+        centerPanel.add(Box.createVerticalStrut(15));
 
         terminosCheck = new JCheckBox("Acepto los terminos y condiciones");
-        terminosCheck.setBounds(60, 610, 380, 25);
-        add(terminosCheck);
+        terminosCheck.setAlignmentX(Component.LEFT_ALIGNMENT);
+        terminosCheck.setBackground(new Color(245, 245, 250));
+        centerPanel.add(terminosCheck);
+        centerPanel.add(Box.createVerticalStrut(20));
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+        buttonPanel.setBackground(new Color(245, 245, 250));
+        buttonPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        buttonPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 40));
 
         JButton registerButton = new JButton("Registrar");
-        registerButton.setBounds(60, 650, 170, 38);
+        registerButton.setPreferredSize(new Dimension(140, 38));
         registerButton.setBackground(new Color(0, 120, 215));
         registerButton.setForeground(Color.WHITE);
-        add(registerButton);
 
-        JButton loginButton = new JButton("Ir a Login");
-        loginButton.setBounds(270, 650, 170, 38);
-        add(loginButton);
+        JButton loginButton = new JButton("Iniciar sesion");
+        loginButton.setPreferredSize(new Dimension(140, 38));
+
+        buttonPanel.add(Box.createHorizontalGlue());
+        buttonPanel.add(registerButton);
+        buttonPanel.add(Box.createHorizontalStrut(20));
+        buttonPanel.add(loginButton);
+        buttonPanel.add(Box.createHorizontalGlue());
+        
+        centerPanel.add(buttonPanel);
+        centerPanel.add(Box.createVerticalGlue());
+
+        mainCenterPanel.add(centerPanel, BorderLayout.CENTER);
+
+        JPanel rightPanel = new JPanel();
+        rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+        rightPanel.setBackground(new Color(245, 245, 250));
+        rightPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 20));
+
+        JLabel regisImageLabel = new JLabel();
+        ImageIcon regisIcon = new ImageIcon("src/regis.png");
+        Image regisImg = regisIcon.getImage().getScaledInstance(350, 640, Image.SCALE_SMOOTH);
+        regisImageLabel.setIcon(new ImageIcon(regisImg));
+        regisImageLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        rightPanel.add(regisImageLabel);
+
+        mainCenterPanel.add(rightPanel, BorderLayout.EAST);
+        add(mainCenterPanel, BorderLayout.CENTER);
 
         registerButton.addActionListener(e -> validateRegistro());
         loginButton.addActionListener(e -> main.showLogin());
     }
 
-    private JTextField createField(String labelText, int y) {
+    private JTextField createFieldNew(String labelText, JPanel panel) {
         JLabel label = new JLabel(labelText);
-        label.setBounds(60, y, 200, 20);
-        add(label);
+        label.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panel.add(label);
+        panel.add(Box.createVerticalStrut(5));
         JTextField field = new JTextField();
-        field.setBounds(60, y + 30, 380, 35);
         field.setFont(new Font("Arial", Font.PLAIN, 16));
         field.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
-        add(field);
+        field.setMaximumSize(new Dimension(Integer.MAX_VALUE, 35));
+        field.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panel.add(field);
+        panel.add(Box.createVerticalStrut(15));
         return field;
     }
 
