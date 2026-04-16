@@ -10,8 +10,8 @@ public class WindowBuilder {
   public static Integer[] cartas = {1,1,2,2,3,3,4,4,5,5,6,6};
   public static JButton[] botones = new JButton[12];
   public static int[] status = new int[12]; 
-  public static int carta_1 = -1; 
-  public static int carta_2 = -1; 
+  public static int carta_1 = 0; 
+  public static int carta_2 = 0; 
   public static void main(String[] args) {
 
     List<Integer> lista = Arrays.asList(cartas);
@@ -256,20 +256,20 @@ public class WindowBuilder {
       botones[n].setIcon(new ImageIcon(image));
       status[n] = 1;
 
-      if (carta_1 == -1) {
+      if (carta_1 == 0) {
         carta_1 = n;
-      } else if (carta_2 == -1) {
+      } else if (carta_2 == 0) {
         carta_2 = n;
         if (cartas[carta_1].equals(cartas[carta_2])) {
           System.out.println("gud");
-          carta_1 = -1;
-          carta_2 = -1;
+          carta_1 = 0;
+          carta_2 = 0;
         } else {
 
           flipBack(carta_1);
           flipBack(carta_2);
-          carta_1 = -1;
-          carta_2 = -1;
+          carta_1 = 0;
+          carta_2 = 0;
         }
       }
     }
