@@ -8,15 +8,17 @@ import javax.swing.*;
 
 public class WindowBuilder {
   public static Integer[] cartas = {1,1,2,2,3,3,4,4,5,5,6,6};
-  public static JButton[] botones = new JButton[12];
+  public static JButton[] btns = new JButton[12];
   public static int[] status = new int[12]; 
-  public static int carta_1 = 0; 
-  public static int carta_2 = 0; 
+  public static int cont_mov;
+  public static int cont_par;
+  public static JLabel lblMovimientos;
+  public static JLabel lblPares;
+  public static Integer carta_1 = null; 
+  public static Integer carta_2 = null; 
   public static void main(String[] args) {
-
     List<Integer> lista = Arrays.asList(cartas);
     Collections.shuffle(lista);
-
 
     JFrame frame = new JFrame("X");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,13 +28,13 @@ public class WindowBuilder {
     panel.setLayout(null);
     panel.setBackground(Color.decode("#1e1e1e"));
 
-    JLabel lblMovimientos = new JLabel("Movimientos: 0");
+    lblMovimientos = new JLabel("Movimientos: "+cont_mov);
     lblMovimientos.setBounds(80, 10, 180, 25);
     lblMovimientos.setForeground(Color.decode("#D9D9D9"));
     lblMovimientos.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 16));
     panel.add(lblMovimientos);
 
-    JLabel lblPares = new JLabel("Pares encontrados: 0");
+    lblPares = new JLabel("Pares encontrados: "+cont_par);
     lblPares.setBounds(300, 10, 220, 25);
     lblPares.setForeground(Color.decode("#D9D9D9"));
     lblPares.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 16));
@@ -53,6 +55,7 @@ public class WindowBuilder {
     btn_r.setFocusPainted(false);
     OnClickEventHelper.setOnClickColor(btn_r, Color.decode("#232323"), Color.decode("#2e2e2e"));
     panel.add(btn_r);
+    btn_r.addActionListener(e -> restart());
 
     JButton btn_p = new JButton("Pausa");
     btn_p.setBounds(520, 700, 100, 29);
@@ -76,8 +79,8 @@ public class WindowBuilder {
     btn_m1.setFocusPainted(false);
     OnClickEventHelper.setOnClickColor(btn_m1, Color.decode("#232323"), Color.decode("#2e2e2e"));
     panel.add(btn_m1);
-    botones[0] = btn_m1;
-    botones[0].addActionListener(e -> flip(0));
+    btns[0] = btn_m1;
+    btns[0].addActionListener(e -> flip(0));
 
     JButton btn_m2 = new JButton("");
     btn_m2.setBounds(296, 50, 160, 192);
@@ -91,8 +94,8 @@ public class WindowBuilder {
     btn_m2.setFocusPainted(false);
     OnClickEventHelper.setOnClickColor(btn_m2, Color.decode("#232323"), Color.decode("#2e2e2e"));
     panel.add(btn_m2);
-    botones[1] = btn_m2;
-    botones[1].addActionListener(e -> flip(1));
+    btns[1] = btn_m2;
+    btns[1].addActionListener(e -> flip(1));
 
     JButton btn_m3 = new JButton("");
     btn_m3.setBounds(512, 50, 160, 192);
@@ -106,8 +109,8 @@ public class WindowBuilder {
     btn_m3.setFocusPainted(false);
     OnClickEventHelper.setOnClickColor(btn_m3, Color.decode("#232323"), Color.decode("#2e2e2e"));
     panel.add(btn_m3);
-    botones[2] = btn_m3;
-    botones[2].addActionListener(e -> flip(2));
+    btns[2] = btn_m3;
+    btns[2].addActionListener(e -> flip(2));
 
     JButton btn_m4 = new JButton("");
     btn_m4.setBounds(728, 50, 160, 192);
@@ -121,8 +124,8 @@ public class WindowBuilder {
     btn_m4.setFocusPainted(false);
     OnClickEventHelper.setOnClickColor(btn_m4, Color.decode("#232323"), Color.decode("#2e2e2e"));
     panel.add(btn_m4);
-    botones[3] = btn_m4;
-    botones[3].addActionListener(e -> flip(3));
+    btns[3] = btn_m4;
+    btns[3].addActionListener(e -> flip(3));
 
     JButton btn_m5 = new JButton("");
     btn_m5.setBounds(80, 267, 160, 192);
@@ -136,8 +139,8 @@ public class WindowBuilder {
     btn_m5.setFocusPainted(false);
     OnClickEventHelper.setOnClickColor(btn_m5, Color.decode("#232323"), Color.decode("#2e2e2e"));
     panel.add(btn_m5);
-    botones[4] = btn_m5;
-    botones[4].addActionListener(e -> flip(4));
+    btns[4] = btn_m5;
+    btns[4].addActionListener(e -> flip(4));
 
     JButton btn_m6 = new JButton("");
     btn_m6.setBounds(296, 267, 160, 192);
@@ -151,134 +154,166 @@ public class WindowBuilder {
     btn_m6.setFocusPainted(false);
     OnClickEventHelper.setOnClickColor(btn_m6, Color.decode("#232323"), Color.decode("#2e2e2e"));
     panel.add(btn_m6);
-    botones[5] = btn_m6;
-    botones[5].addActionListener(e -> flip(5));
+    btns[5] = btn_m6;
+    btns[5].addActionListener(e -> flip(5));
 
-    JButton element9 = new JButton("");
-    element9.setBounds(512, 267, 160, 192);
+    JButton btn_m7 = new JButton("");
+    btn_m7.setBounds(512, 267, 160, 192);
     ImageIcon icon7 = new ImageIcon("src/as.png");
     Image image7 = icon7.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-    element9.setIcon(new ImageIcon(image7));
-    element9.setBackground(Color.decode("#2e2e2e"));
-    element9.setForeground(Color.decode("#D9D9D9"));
-    element9.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
-    element9.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
-    element9.setFocusPainted(false);
-    OnClickEventHelper.setOnClickColor(element9, Color.decode("#232323"), Color.decode("#2e2e2e"));
-    panel.add(element9);
-    botones[6] = element9;
-    botones[6].addActionListener(e -> flip(6));
+    btn_m7.setIcon(new ImageIcon(image7));
+    btn_m7.setBackground(Color.decode("#2e2e2e"));
+    btn_m7.setForeground(Color.decode("#D9D9D9"));
+    btn_m7.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
+    btn_m7.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
+    btn_m7.setFocusPainted(false);
+    OnClickEventHelper.setOnClickColor(btn_m7, Color.decode("#232323"), Color.decode("#2e2e2e"));
+    panel.add(btn_m7);
+    btns[6] = btn_m7;
+    btns[6].addActionListener(e -> flip(6));
 
-    JButton element10 = new JButton("");
-    element10.setBounds(728, 267, 160, 192);
+    JButton btn_m8 = new JButton("");
+    btn_m8.setBounds(728, 267, 160, 192);
     ImageIcon icon8 = new ImageIcon("src/as.png");
     Image image8 = icon8.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-    element10.setIcon(new ImageIcon(image8));
-    element10.setBackground(Color.decode("#2e2e2e"));
-    element10.setForeground(Color.decode("#D9D9D9"));
-    element10.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
-    element10.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
-    element10.setFocusPainted(false);
-    OnClickEventHelper.setOnClickColor(element10, Color.decode("#232323"), Color.decode("#2e2e2e"));
-    panel.add(element10);
-    botones[7] = element10;
-    botones[7].addActionListener(e -> flip(7));
+    btn_m8.setIcon(new ImageIcon(image8));
+    btn_m8.setBackground(Color.decode("#2e2e2e"));
+    btn_m8.setForeground(Color.decode("#D9D9D9"));
+    btn_m8.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
+    btn_m8.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
+    btn_m8.setFocusPainted(false);
+    OnClickEventHelper.setOnClickColor(btn_m8, Color.decode("#232323"), Color.decode("#2e2e2e"));
+    panel.add(btn_m8);
+    btns[7] = btn_m8;
+    btns[7].addActionListener(e -> flip(7));
 
-    JButton element11 = new JButton("");
-    element11.setBounds(80, 484, 160, 192);
+    JButton btn_m9 = new JButton("");
+    btn_m9.setBounds(80, 484, 160, 192);
     ImageIcon icon9 = new ImageIcon("src/as.png");
     Image image9 = icon9.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-    element11.setIcon(new ImageIcon(image9));
-    element11.setBackground(Color.decode("#2e2e2e"));
-    element11.setForeground(Color.decode("#D9D9D9"));
-    element11.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
-    element11.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
-    element11.setFocusPainted(false);
-    OnClickEventHelper.setOnClickColor(element11, Color.decode("#232323"), Color.decode("#2e2e2e"));
-    panel.add(element11);
-    botones[8] = element11;
-    botones[8].addActionListener(e -> flip(8));
+    btn_m9.setIcon(new ImageIcon(image9));
+    btn_m9.setBackground(Color.decode("#2e2e2e"));
+    btn_m9.setForeground(Color.decode("#D9D9D9"));
+    btn_m9.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
+    btn_m9.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
+    btn_m9.setFocusPainted(false);
+    OnClickEventHelper.setOnClickColor(btn_m9, Color.decode("#232323"), Color.decode("#2e2e2e"));
+    panel.add(btn_m9);
+    btns[8] = btn_m9;
+    btns[8].addActionListener(e -> flip(8));
 
-    JButton element12 = new JButton("");
-    element12.setBounds(296, 484, 160, 192);
+    JButton btn_m10 = new JButton("");
+    btn_m10.setBounds(296, 484, 160, 192);
     ImageIcon icon10 = new ImageIcon("src/as.png");
     Image image10 = icon10.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-    element12.setIcon(new ImageIcon(image10));
-    element12.setBackground(Color.decode("#2e2e2e"));
-    element12.setForeground(Color.decode("#D9D9D9"));
-    element12.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
-    element12.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
-    element12.setFocusPainted(false);
-    OnClickEventHelper.setOnClickColor(element12, Color.decode("#232323"), Color.decode("#2e2e2e"));
-    panel.add(element12);
-    botones[9] = element12;
-    botones[9].addActionListener(e -> flip(9));
+    btn_m10.setIcon(new ImageIcon(image10));
+    btn_m10.setBackground(Color.decode("#2e2e2e"));
+    btn_m10.setForeground(Color.decode("#D9D9D9"));
+    btn_m10.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
+    btn_m10.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
+    btn_m10.setFocusPainted(false);
+    OnClickEventHelper.setOnClickColor(btn_m10, Color.decode("#232323"), Color.decode("#2e2e2e"));
+    panel.add(btn_m10);
+    btns[9] = btn_m10;
+    btns[9].addActionListener(e -> flip(9));
 
-    JButton element13 = new JButton("");
-    element13.setBounds(512, 484, 160, 192);
+    JButton btn_m11 = new JButton("");
+    btn_m11.setBounds(512, 484, 160, 192);
     ImageIcon icon11 = new ImageIcon("src/as.png");
     Image image11 = icon11.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-    element13.setIcon(new ImageIcon(image11));
-    element13.setBackground(Color.decode("#2e2e2e"));
-    element13.setForeground(Color.decode("#D9D9D9"));
-    element13.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
-    element13.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
-    element13.setFocusPainted(false);
-    OnClickEventHelper.setOnClickColor(element13, Color.decode("#232323"), Color.decode("#2e2e2e"));
-    panel.add(element13);
-    botones[10] = element13;
-    botones[10].addActionListener(e -> flip(10));
+    btn_m11.setIcon(new ImageIcon(image11));
+    btn_m11.setBackground(Color.decode("#2e2e2e"));
+    btn_m11.setForeground(Color.decode("#D9D9D9"));
+    btn_m11.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
+    btn_m11.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
+    btn_m11.setFocusPainted(false);
+    OnClickEventHelper.setOnClickColor(btn_m11, Color.decode("#232323"), Color.decode("#2e2e2e"));
+    panel.add(btn_m11);
+    btns[10] = btn_m11;
+    btns[10].addActionListener(e -> flip(10));
 
-    JButton element14 = new JButton("");
-    element14.setBounds(728, 484, 160, 192);
+    JButton btn_12 = new JButton("");
+    btn_12.setBounds(728, 484, 160, 192);
     ImageIcon icon12 = new ImageIcon("src/as.png");
     Image image12 = icon12.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-    element14.setIcon(new ImageIcon(image12));
-    element14.setBackground(Color.decode("#2e2e2e"));
-    element14.setForeground(Color.decode("#D9D9D9"));
-    element14.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
-    element14.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
-    element14.setFocusPainted(false);
-    OnClickEventHelper.setOnClickColor(element14, Color.decode("#232323"), Color.decode("#2e2e2e"));
-    panel.add(element14);
-    botones[11] = element14;
-    botones[11].addActionListener(e -> flip(11));
-
+    btn_12.setIcon(new ImageIcon(image12));
+    btn_12.setBackground(Color.decode("#2e2e2e"));
+    btn_12.setForeground(Color.decode("#D9D9D9"));
+    btn_12.setFont(CustomFontLoader.loadFont("./resources/fonts/Lato.ttf", 14));
+    btn_12.setBorder(new RoundedBorder(4, Color.decode("#979797"), 1));
+    btn_12.setFocusPainted(false);
+    OnClickEventHelper.setOnClickColor(btn_12, Color.decode("#232323"), Color.decode("#2e2e2e"));
+    panel.add(btn_12);
+    btns[11] = btn_12;
+    btns[11].addActionListener(e -> flip(11));
     frame.add(panel);
     frame.setVisible(true);
-
   }
   public static void flip(Integer n) {
     if (n >= 0 && n < 12 && status[n] == 0) {
 
       ImageIcon icon = new ImageIcon("src/memoriaback/" + cartas[n] + ".png");
       Image image = icon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-      botones[n].setIcon(new ImageIcon(image));
+      btns[n].setIcon(new ImageIcon(image));
       status[n] = 1;
-
-      if (carta_1 == 0) {
+      cont_mov++;
+      lblMovimientos.setText("Movimientos: "+cont_mov);
+      if (carta_1 == null) {
         carta_1 = n;
-      } else if (carta_2 == 0) {
+      } else if (carta_2 == null) {
         carta_2 = n;
         if (cartas[carta_1].equals(cartas[carta_2])) {
           System.out.println("gud");
-          carta_1 = 0;
-          carta_2 = 0;
+          carta_1 = null;
+          carta_2 = null;
+          cont_par++;
+          lblPares.setText("Pares encontrados: "+cont_par);
+          Win();
         } else {
 
-          flipBack(carta_1);
-          flipBack(carta_2);
-          carta_1 = 0;
-          carta_2 = 0;
+          flipB(carta_1);
+          flipB(carta_2);
+          carta_1 = null;
+          carta_2 = null;
         }
       }
     }
   }
+  public static void Win() {
+    for (int s : status) {
+      if (s == 0) {
+        return;
+      }
+    }
+    JOptionPane.showMessageDialog(null, "GG","", JOptionPane.INFORMATION_MESSAGE);
+  }
 
-  public static void flipBack(int n) {
+  public static void restart() {
+    Collections.shuffle(Arrays.asList(cartas));
+    Arrays.fill(status, 0);
+    cont_mov = 0;
+    cont_par = 0;
+    carta_1 = null;
+    carta_2 = null;
+    lblMovimientos.setText("Movimientos: " + cont_mov);
+    lblPares.setText("Pares encontrados: " + cont_par);
+
+    ImageIcon backIcon = new ImageIcon("src/as.png");
+    Image backImage = backIcon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+    Icon asIcon = new ImageIcon(backImage);
+
+    for (JButton btn : btns) {
+      if (btn != null) {
+        btn.setIcon(asIcon);
+        btn.setEnabled(true);
+      }
+    }
+  }
+
+  public static void flipB(int n) {
     ImageIcon icon = new ImageIcon("src/as.png");
     Image image = icon.getImage().getScaledInstance(80, 80, Image.SCALE_SMOOTH);
-    botones[n].setIcon(new ImageIcon(image));
+    btns[n].setIcon(new ImageIcon(image));
     status[n] = 0;
   }
 }
