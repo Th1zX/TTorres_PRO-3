@@ -15,7 +15,7 @@ public class WindowBuilder {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(null);
         mainPanel.setBackground(Color.decode("#1e1e1e"));
-
+//hola
         String[] currentTool = {"Pincel"};
         Color[] currentColor = {Color.BLACK};
 
