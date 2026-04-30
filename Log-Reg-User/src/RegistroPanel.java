@@ -141,3 +141,4 @@ public class RegistroPanel extends JPanel {
             JOptionPane.showMessageDialog(this, "Verifique los campos marcados", "Error de validacion", JOptionPane.WARNING_MESSAGE);
         }
     }
+}
